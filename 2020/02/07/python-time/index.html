@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hexo.scallions.cn","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="python和时间相关的库主要包括datetime和pandas、dateutil，很多库都是对datetime的相关类进行扩展，所以有些函数参数可以传入两者之一。可通过dir或者help函数快速了解相关对象的用途。 datetime库主要的对象有:  datetime timedelta  pandas库的主要对象有:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python时间相关库">
+<meta property="og:url" content="https://hexo.scallions.cn/2020/02/07/python-time/index.html">
+<meta property="og:site_name" content="Scallions">
+<meta property="og:description" content="python和时间相关的库主要包括datetime和pandas、dateutil，很多库都是对datetime的相关类进行扩展，所以有些函数参数可以传入两者之一。可通过dir或者help函数快速了解相关对象的用途。 datetime库主要的对象有:  datetime timedelta  pandas库的主要对象有:">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-02-07T06:10:01.000Z">
+<meta property="article:modified_time" content="2020-02-07T06:10:01.000Z">
+<meta property="article:author" content="Scallions">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://hexo.scallions.cn/2020/02/07/python-time/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>python时间相关库 | Scallions</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.12.0/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Scallions</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hexo.scallions.cn/2020/02/07/python-time/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Scallions">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Scallions">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          python时间相关库
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-07 14:10:01" itemprop="dateCreated datePublished" datetime="2020-02-07T14:10:01+08:00">2020-02-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>python和时间相关的库主要包括<code>datetime</code>和<code>pandas</code>、<code>dateutil</code>，很多库都是对<code>datetime</code>的相关类进行扩展，所以有些函数参数可以传入两者之一。可通过dir或者help函数快速了解相关对象的用途。</p>
+<p>datetime库主要的对象有:</p>
+<ul>
+<li>datetime</li>
+<li>timedelta</li>
+</ul>
+<p>pandas库的主要对象有:</p>
+<ul>
+<li>DatetimeIndex</li>
+<li>PeriodIndex</li>
+<li>Timestamp</li>
+<li>Period</li>
+<li>Timedelta</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="datetime"><a href="#datetime" class="headerlink" title="datetime"></a>datetime</h2><p>datetime 类属性或函数</p>
+<p>利用dir查看</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>name</th>
+<th>name</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>‘astimezone’,</td>
+<td>‘hour’,</td>
+<td>‘replace’,</td>
+<td>‘toordinal’,</td>
+</tr>
+<tr>
+<td>‘combine’,</td>
+<td>‘isocalendar’,</td>
+<td>‘resolution’,</td>
+<td>‘tzinfo’,</td>
+</tr>
+<tr>
+<td>‘ctime’,</td>
+<td>‘isoformat’,</td>
+<td>‘second’,</td>
+<td>‘tzname’,</td>
+</tr>
+<tr>
+<td>‘date’,</td>
+<td>‘isoweekday’,</td>
+<td>‘strftime’,</td>
+<td>‘utcfromtimestamp’,</td>
+</tr>
+<tr>
+<td>‘day’,</td>
+<td>‘max’,</td>
+<td>‘strptime’,</td>
+<td>‘utcnow’,</td>
+</tr>
+<tr>
+<td>‘dst’,</td>
+<td>‘microsecond’,</td>
+<td>‘time’,</td>
+<td>‘utcoffset’,</td>
+</tr>
+<tr>
+<td>‘fold’,</td>
+<td>‘min’,</td>
+<td>‘timestamp’,</td>
+<td>‘utctimetuple’,</td>
+</tr>
+<tr>
+<td>‘fromisoformat’,</td>
+<td>‘minute’,</td>
+<td>‘timetuple’,</td>
+<td>‘weekday’,</td>
+</tr>
+<tr>
+<td>‘fromordinal’,</td>
+<td>‘month’,</td>
+<td>‘timetz’,</td>
+<td>‘year’</td>
+</tr>
+<tr>
+<td>‘fromtimestamp’,</td>
+<td>‘now’,</td>
+<td>‘today’,</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="pandas"><a href="#pandas" class="headerlink" title="pandas"></a>pandas</h2><p>Timestamp 属性或方法</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>name</th>
+<th>name</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>‘asm8’,</td>
+<td>‘fromordinal’,</td>
+<td>‘month_name’,</td>
+<td>‘to_pydatetime’,</td>
+</tr>
+<tr>
+<td>‘astimezone’,</td>
+<td>‘fromtimestamp’,</td>
+<td>‘nanosecond’,</td>
+<td>‘today’,</td>
+</tr>
+<tr>
+<td>‘ceil’,</td>
+<td>‘hour’,</td>
+<td>‘normalize’,</td>
+<td>‘toordinal’,</td>
+</tr>
+<tr>
+<td>‘combine’,</td>
+<td>‘is_leap_year’,</td>
+<td>‘now’,</td>
+<td>‘tz’,</td>
+</tr>
+<tr>
+<td>‘ctime’,</td>
+<td>‘is_month_end’,</td>
+<td>‘quarter’,</td>
+<td>‘tz_convert’,</td>
+</tr>
+<tr>
+<td>‘date’,</td>
+<td>‘is_month_start’,</td>
+<td>‘replace’,</td>
+<td>‘tz_localize’,</td>
+</tr>
+<tr>
+<td>‘day’,</td>
+<td>‘is_quarter_end’,</td>
+<td>‘resolution’,</td>
+<td>‘tzinfo’,</td>
+</tr>
+<tr>
+<td>‘day_name’,</td>
+<td>‘is_quarter_start’,</td>
+<td>‘round’,</td>
+<td>‘tzname’,</td>
+</tr>
+<tr>
+<td>‘dayofweek’,</td>
+<td>‘is_year_end’,</td>
+<td>‘second’,</td>
+<td>‘utcfromtimestamp’,</td>
+</tr>
+<tr>
+<td>‘dayofyear’,</td>
+<td>‘is_year_start’,</td>
+<td>‘strftime’,</td>
+<td>‘utcnow’,</td>
+</tr>
+<tr>
+<td>‘days_in_month’,</td>
+<td>‘isocalendar’,</td>
+<td>‘strptime’,</td>
+<td>‘utcoffset’,</td>
+</tr>
+<tr>
+<td>‘daysinmonth’,</td>
+<td>‘isoformat’,</td>
+<td>‘time’,</td>
+<td>‘utctimetuple’,</td>
+</tr>
+<tr>
+<td>‘dst’,</td>
+<td>‘isoweekday’,</td>
+<td>‘timestamp’,</td>
+<td>‘value’,</td>
+</tr>
+<tr>
+<td>‘floor’,</td>
+<td>‘max’,</td>
+<td>‘timetuple’,</td>
+<td>‘week’,</td>
+</tr>
+<tr>
+<td>‘fold’,</td>
+<td>‘microsecond’,</td>
+<td>‘timetz’,</td>
+<td>‘weekday’,</td>
+</tr>
+<tr>
+<td>‘freq’,</td>
+<td>‘min’,</td>
+<td>‘to_datetime64’,</td>
+<td>‘weekday_name’,</td>
+</tr>
+<tr>
+<td>‘freqstr’,</td>
+<td>‘minute’,</td>
+<td>‘to_julian_date’,</td>
+<td>‘weekofyear’,</td>
+</tr>
+<tr>
+<td>‘fromisoformat’,</td>
+<td>‘month’,</td>
+<td>‘to_numpy’,</td>
+<td>‘year’</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>‘to_period’,</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>可见其和datetime的datetime有很多一样的方法</p>
+<h2 id="常见场景"><a href="#常见场景" class="headerlink" title="常见场景"></a>常见场景</h2><h3 id="字符串-python-对象-转化"><a href="#字符串-python-对象-转化" class="headerlink" title="字符串  python 对象 转化"></a>字符串  python 对象 转化</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">stamp.strftime(<span class="string">&quot;%y-%m-%d&quot;</span>) <span class="comment"># str -&gt; datetime.datetime</span></span><br><span class="line"><span class="built_in">str</span>(datetime) <span class="comment"># datetime.datetime -&gt; str</span></span><br><span class="line">dateutil.parser(<span class="string">&#x27;20170707&#x27;</span>) <span class="comment"># str -&gt; datetime.datetime</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="pandas-1"><a href="#pandas-1" class="headerlink" title="pandas"></a>pandas</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pd.to_datetime(dates) <span class="comment"># [str] -&gt; DatetimeIndex</span></span><br><span class="line">datetimeindex.to_pydatetime <span class="comment"># DatetimeIndex -&gt; [datetime.datetime]</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="生成一段时间的时间序列"><a href="#生成一段时间的时间序列" class="headerlink" title="生成一段时间的时间序列"></a>生成一段时间的时间序列</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.date_range(start=s,end=e,periods=<span class="number">12</span>,freq=<span class="string">&#x27;D&#x27;</span>,name=<span class="string">&#x27;ds&#x27;</span>) <span class="comment"># =&gt; DatetimeIndex</span></span><br></pre></td></tr></table></figure>
+<p>利用这个函数可以返回一段时间的时间索引，类型为DatetimeIndex</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># python</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/28/learn-tf-1/" rel="prev" title="Tensorflow2 笔记1">
+      <i class="fa fa-chevron-left"></i> Tensorflow2 笔记1
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/26/latex-example/" rel="next" title="latex示例">
+      latex示例 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  
+  <div class="comments">
+  <script src="https://utteranc.es/client.js" repo="Scallions/Scallions.github.io" issue-term="title" theme="github-light" crossorigin="anonymous" async></script>
+  </div>
+  
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#datetime"><span class="nav-number">1.</span> <span class="nav-text">datetime</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pandas"><span class="nav-number">2.</span> <span class="nav-text">pandas</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%9C%BA%E6%99%AF"><span class="nav-number">3.</span> <span class="nav-text">常见场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2-python-%E5%AF%B9%E8%B1%A1-%E8%BD%AC%E5%8C%96"><span class="nav-number">3.1.</span> <span class="nav-text">字符串  python 对象 转化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#pandas-1"><span class="nav-number">3.1.1.</span> <span class="nav-text">pandas</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E4%B8%80%E6%AE%B5%E6%97%B6%E9%97%B4%E7%9A%84%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97"><span class="nav-number">3.2.</span> <span class="nav-text">生成一段时间的时间序列</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Scallions</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<div id="poem_sentence"></div>
+<script type="text/javascript">
+  jinrishici.load(function(result) {
+    var sentence = document.querySelector("#poem_sentence")
+    var info = document.querySelector("#poem_info")
+    sentence.innerHTML = result.data.content + '    -- [' + result.data.origin.dynasty + ']' + result.data.origin.author + '《' + result.data.origin.title + '》'
+  });
+</script>
+
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Scallions</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.staticfile.org/mathjax/3.1.2/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+
+  
+
+</body>
+</html>
