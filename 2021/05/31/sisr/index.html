@@ -225,7 +225,8 @@
 <p>常用评价函数</p>
 <ol>
 <li><p>PSNR/SSIM</p>
-<p>peak signal-to-noise ratio<br>$$<br>\begin{array}{l}<br>M S E=\frac{1}{N}|I-\hat{I}|_{F}^{2} \<br>P N S R=10 \log <em>{10}^{\left(\frac{L^{2}}{M S E}\right)}<br>\end{array}<br>$$<br>其中$I$表示有$N$个像素的图像，$|\cdot |</em>{F}^{2}$表示Frobenius正则，$L$一般等于255</p>
+<p>peak signal-to-noise ratio<br>$$<br>MSE=\frac{1}{N}|I-\hat{I}|_{F}^{2}<br>$$</p>
+<p>$$<br>PNSR=10 \log_{10}{\left(\frac{L^{2}}{MSE}\right)}<br>$$<br>其中$I$表示有$N$个像素的图像，$|\cdot |_{F}^{2}$表示Frobenius正则，$L$一般等于255</p>
 <p>structural similarity index<br>$$<br>\operatorname{SSIM}(I, \hat{I})=\frac{2 \mu_{I} \mu_{\hat{I}}+k_{1}}{\mu_{I}^{2}+\mu_{\hat{I}}^{2}+k_{1}} \cdot \frac{\sigma_{I \hat{I}}+k_{2}}{\sigma_{I}^{2}+\sigma_{\hat{I}}^{2}+k_{2}}<br>$$<br>其中$\mu$和$\sigma^2$表示$I$的均值和方差，$k_1$和$k_2$表示松弛项常数</p>
 </li>
 <li><p>网络参数</p>
