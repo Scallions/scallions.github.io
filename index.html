@@ -164,6 +164,72 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hexo.scallions.cn/2021/06/10/cs-sr/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Scallions">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Scallions">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/10/cs-sr/" class="post-title-link" itemprop="url">压缩感知和稀疏表示</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-10 17:18:11" itemprop="dateCreated datePublished" datetime="2021-06-10T17:18:11+08:00">2021-06-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="压缩感知"><a href="#压缩感知" class="headerlink" title="压缩感知"></a>压缩感知</h2><p>压缩感知和数据压缩相反，数据压缩是已知高维的数据，将其通过低维的表示出来，以达到压缩数据量的目的。而压缩感知则是在数据获取的时候，通过使用Unsample的数据，即采样数没有真实数据维数多，来还原真实数据的，使得还原的数据和真实数据较好符合的一门技术。换句话说，压缩感知，是通过压缩过的感知手段来还原真实数据。</p>
+<h3 id="Nyquist–Shannon-奈奎斯特-香农-采样定理"><a href="#Nyquist–Shannon-奈奎斯特-香农-采样定理" class="headerlink" title="Nyquist–Shannon(奈奎斯特-香农)采样定理"></a>Nyquist–Shannon(奈奎斯特-香农)采样定理</h3><p>定理内容 :如果一个系统以超过信号最高频率至少两倍的速率对模拟信号进行均匀采样，那么原始模拟信号就能从采样产生的离散值中完全恢复。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/06/10/cs-sr/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://hexo.scallions.cn/2021/05/31/sisr/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -464,74 +530,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://hexo.scallions.cn/2020/03/20/py-import/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Scallions">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Scallions">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/20/py-import/" class="post-title-link" itemprop="url">python循环调用解决</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-20 16:54:13" itemprop="dateCreated datePublished" datetime="2020-03-20T16:54:13+08:00">2020-03-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>由于非科班出身，并没有学过什么软工之类的东西，写代码之前也不会画什么uml，所以在写python的时候很容易出现循环引用，耦合过重。下面给出我遇到这样的情况下的几个土办法蛤蛤😝。</p>
-<span id="more"></span>
-
-<h2 id="情况分析"><a href="#情况分析" class="headerlink" title="情况分析"></a>情况分析</h2><p>我遇到到的情况一般是，在文件A中引用B的一些函数等，在文件B中需要用到Ade方法或者类，要解决这种情况，斩断这种联系，就要减少一方对另一方的引用即依赖，减少耦合。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/03/20/py-import/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -601,7 +599,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
