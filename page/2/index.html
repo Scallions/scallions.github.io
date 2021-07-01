@@ -76,10 +76,7 @@
 <link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.12.0/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="stylesheet" href="/assets/css/APlayer.min.css" class="aplayer-style-marker">
-<script src="/assets/js/APlayer.min.js" class="aplayer-script-marker"></script>
-<script src="/assets/js/Meting.min.js" class="meting-script-marker"></script>
-</head>
+<!-- hexo injector head_end end --><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
@@ -163,6 +160,226 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hexo.scallions.cn/2021/03/27/epoll-linux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Scallions">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Scallions">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/27/epoll-linux/" class="post-title-link" itemprop="url">epoll-linux</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-27 20:33:28" itemprop="dateCreated datePublished" datetime="2021-03-27T20:33:28+08:00">2021-03-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-27 20:33:28" itemprop="dateModified" datetime="2021-05-27T20:33:28+08:00">2021-05-27</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>参考资料(<a target="_blank" rel="noopener" href="http://www.52im.net/thread-1939-1-1.html">http://www.52im.net/thread-1939-1-1.html</a>)</p>
+<p>epoll主要是用来解决服务器单线程处理用户请求时若请求事务过重造成单位时间处理事务少，给其他用户造成长时间等待的情形。</p>
+<p>通过epoll可以采用Reactor模式，将接受请求和业务处理分割开来，实现更高的并发数量和处理效率。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hexo.scallions.cn/2020/04/23/ml-conv/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Scallions">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Scallions">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/23/ml-conv/" class="post-title-link" itemprop="url">机器学习中的卷积及其对应的实现方式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-23 22:51:18" itemprop="dateCreated datePublished" datetime="2020-04-23T22:51:18+08:00">2020-04-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在深度学习中，卷积时很重要的一个环节，它能够提取出图片或序列中的模式。卷积可以分为很多种类型，如：卷积，反卷积，深度可分离卷积等等，这篇文章主要介绍几种常用的卷积方式以及其在pytorch中对应的实现。</p>
+<span id="more"></span>
+
+<h2 id="卷积"><a href="#卷积" class="headerlink" title="卷积"></a>卷积</h2><p>首先我们定义两种类型的张量，一种是图片，一种是序列。图片的张量的size为<code>[batch, channel, height, width]</code>，序列的张量的size为<code>[batch, channel, length]</code>。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/23/ml-conv/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hexo.scallions.cn/2020/03/21/julia-holy-trait/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Scallions">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Scallions">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/21/julia-holy-trait/" class="post-title-link" itemprop="url">julia holy trait 简介</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-21 16:47:30" itemprop="dateCreated datePublished" datetime="2020-03-21T16:47:30+08:00">2020-03-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>这是一篇简单介绍julia里面的holy trait的文章，大部分参考了这篇<a target="_blank" rel="noopener" href="https://white.ucc.asn.au/2018/10/03/Dispatch,-Traits-and-Metaprogramming-Over-Reflection.html">文章</a>，节选了一部分将英文翻译成中文，毕竟元编程还不是很熟高级的实现还没太弄明白。</p>
+<span id="more"></span>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>由于julia采用的是多重派发和单继承，所以在对某些功能进行拓展时就很不现实，比如有一个已经实现了的功能，需要对新的类进行适配，就需要修改源函数。给一个例子：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/21/julia-holy-trait/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -300,232 +517,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://hexo.scallions.cn/2020/02/26/latex-example/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Scallions">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Scallions">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/26/latex-example/" class="post-title-link" itemprop="url">latex示例</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-26 15:43:43" itemprop="dateCreated datePublished" datetime="2020-02-26T15:43:43+08:00">2020-02-26</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Latex是一种文档排版系统，对比与markdown和html，其优势在于：排版的精准、复杂不同于html和markdown对于渲染方式的不同可能发生变化，latex可以生产pdf矢量化文件，保证了精准。Latex可以让人从繁杂的排版工作中解脱出来，专注于内容创作，但由于其学习曲线比较陡峭，因而造成了多数人的望而却步，建议开始学习的时候可以找到一个合适的模板直接套用，感受其强大之处。下面给出一个简单的例子</p>
-<span id="more"></span>
-
-    <div id="aplayer-iSBjYXxi" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="4453913" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="true" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"></div>
-
-<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 注释</span></span><br><span class="line"><span class="comment">% 中文支持可用ctex</span></span><br><span class="line"><span class="keyword">\documentclass</span>[UTF8]&#123;ctexart&#125; <span class="comment">% 支持中文</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125; <span class="comment">% 开始正文</span></span><br><span class="line"><span class="keyword">\section</span>&#123;Title1&#125; <span class="comment">% 一级标题</span></span><br><span class="line">some text 巴拉巴拉</span><br><span class="line"><span class="keyword">\[</span> <span class="comment">% 数学公式</span></span><br><span class="line"> a<span class="built_in">^</span>2 + b<span class="built_in">^</span>2 = c<span class="built_in">^</span>2</span><br><span class="line">]<span class="keyword">\</span></span><br><span class="line"><span class="keyword"></span><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/02/26/latex-example/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://hexo.scallions.cn/2020/02/07/python-time/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Scallions">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Scallions">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/07/python-time/" class="post-title-link" itemprop="url">python时间相关库</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-07 14:10:01" itemprop="dateCreated datePublished" datetime="2020-02-07T14:10:01+08:00">2020-02-07</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>python和时间相关的库主要包括<code>datetime</code>和<code>pandas</code>、<code>dateutil</code>，很多库都是对<code>datetime</code>的相关类进行扩展，所以有些函数参数可以传入两者之一。可通过dir或者help函数快速了解相关对象的用途。</p>
-<p>datetime库主要的对象有:</p>
-<ul>
-<li>datetime</li>
-<li>timedelta</li>
-</ul>
-<p>pandas库的主要对象有:</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/02/07/python-time/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://hexo.scallions.cn/2019/12/28/learn-tf-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Scallions">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Scallions">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/28/learn-tf-1/" class="post-title-link" itemprop="url">Tensorflow2 笔记1</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-28 20:05:00" itemprop="dateCreated datePublished" datetime="2019-12-28T20:05:00+08:00">2019-12-28</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Keras-基础知识"><a href="#Keras-基础知识" class="headerlink" title="Keras 基础知识"></a>Keras 基础知识</h1><p>keras 是在从机器学习中抽象出来的高级API，给不同的模型提供了方便快捷的接口，隐藏了模型的具体实现，可以快速的构建出想要的模型，适合刚入门机器学习并不需要太深度的要求的人群，其中主要的对象为Model，Model主要含有下面几个方法</p>
-<ul>
-<li>summary<br>给出模型的概况，包括层、层的参数个数、可训练的参数个数等</li>
-<li>compile<br>编译，给模型规定loss方法，梯度更新的方法，以及训练过程中输出的测度</li>
-<li>fit<br>用训练集训练模型，并返回一个History对象，History包含compile中的测度</li>
-<li>evaluate<br>用于评估测试集</li>
-</ul>
-<p>更多Model的方法可用<code>dir(keras.Model)</code>来查看</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/12/28/learn-tf-1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -591,7 +586,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
